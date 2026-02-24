@@ -1,0 +1,425 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 13,
+  "summary": "University-based community app for college students renamed to UniShare with updated branding. Core features: (1) Marketplace to buy/sell/rent essentials with campus/city area filters, (2) Communities feature with interest-based groups and location filters, (3) Events feature with user-listed and platform-organized events. Additional features: (4) Extended user onboarding/profile with Name, college, course, year of study, interest areas, LinkedIn/social links, (5) User profile page showing postings, groups joined, interested groups, and about section, (6) Location detection when posting or at login, (7) Peer-to-peer Chat feature for private discussions and connections.",
+  "architectural_notes": [
+    "App is university/college-scoped; users are college students with college and city context",
+    "Three main modules: Marketplace, Communities, Events — each with location-based filtering (campus/city)",
+    "App renamed to UniShare; branding (logo, icon) should reflect new name",
+    "User profile model extended to include: name, college, course, year of study, interest areas, LinkedIn/social links",
+    "Simplify implementation scope: prioritize UniShare branding and User Profile page as must-haves; other sections (chat, full backend) can be partial or deferred"
+  ],
+  "known_issues": [
+    "Duplicate logo shown on PC browser — extra logo appearing above navbar logo needs to be removed",
+    "Location filter is not functional — needs to be wired up to actually filter listings/communities/events by location",
+    "Logo, text styles, and color scheme were changed in a recent build and need to be reverted to match the previous design",
+    "Footer is not visible on mobile — only shows on PC/desktop; needs to be fixed to render below the About section on mobile"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-design-and-implement-a-cohesive-visual-theme-for-the-app-a-fresh-energetic-academic-aesthetic-using-warm-amber-teal-white-tones-clean-card-based-layouts-bold-section-headings-and-consistent-iconography-that-feels-modern-and-student-friendly-apply-this-theme-consistently-across-all-pages-and-components",
+      "title": "Design and implement a cohesive visual theme for the app: a fresh, energetic academic aesthetic using warm amber/teal/white tones, clean card-based layouts, bold section headings, and consistent iconography that feels modern and student-friendly. Apply this theme consistently across all pages and components.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-navigation-structure-with-a-top-navbar-and-bottom-tab-bar-on-mobile-that-links-to-three-main-sections-marketplace-communities-and-events-include-a-home-landing-page-that-briefly-showcases-all-three-features",
+      "title": "Create a navigation structure with a top navbar and bottom tab bar (on mobile) that links to three main sections: Marketplace, Communities, and Events. Include a Home/landing page that briefly showcases all three features.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-marketplace-page-in-the-frontend-with-a-listing-grid-card-view-a-post-listing-button-form-to-create-a-new-listing-title-description-category-type-price-college-city-area-scope-and-a-filter-sidebar-panel-allowing-users-to-filter-by-category-books-notes-stationery-other-transaction-type-sell-buy-rent-and-area-scope-campus-only-city-wide",
+      "title": "Build a Marketplace page in the frontend with: a listing grid/card view, a 'Post Listing' button/form to create a new listing (title, description, category, type, price, college, city, area scope), and a filter sidebar/panel allowing users to filter by category (books, notes, stationery, other), transaction type (sell, buy, rent), and area scope (campus only | city-wide).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-communities-page-in-the-frontend-with-a-community-card-grid-a-filter-bar-for-topic-category-college-name-and-city-a-create-community-form-and-a-request-to-join-or-join-button-on-each-community-card-show-a-member-count-and-topic-badge-on-each-card",
+      "title": "Build a Communities page in the frontend with: a community card grid, a filter bar for topic/category, college name, and city, a 'Create Community' form, and a 'Request to Join' or 'Join' button on each community card. Show a member count and topic badge on each card.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-community-detail-page-that-shows-community-info-member-list-and-a-pending-requests-panel-visible-only-to-the-community-creator-where-the-creator-can-approve-pending-join-requests",
+      "title": "Build a Community Detail page that shows community info, member list, and a pending requests panel visible only to the community creator, where the creator can approve pending join requests.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-events-page-in-the-frontend-with-two-sections-community-events-user-listed-events-and-events-by-us-platform-organized-events-visually-distinguished-with-a-special-badge-or-banner-include-a-filter-bar-for-category-college-and-city-each-event-is-shown-as-a-card-with-title-date-venue-category-badge-and-organizer",
+      "title": "Build an Events page in the frontend with two sections: 'Community Events' (user-listed events) and 'Events By Us' (platform-organized events, visually distinguished with a special badge or banner). Include a filter bar for category, college, and city. Each event is shown as a card with title, date, venue, category badge, and organizer.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-event-detail-page-that-shows-full-event-information-title-description-date-venue-college-city-category-organizer-if-a-registrationlink-is-provided-show-a-register-visit-event-page-button-that-opens-the-external-link-if-no-external-link-show-an-in-app-register-button-that-calls-registerforevent-on-the-backend-and-shows-a-success-confirmation-show-attendee-count",
+      "title": "Build an Event Detail page that shows full event information (title, description, date, venue, college, city, category, organizer). If a registrationLink is provided, show a 'Register / Visit Event Page' button that opens the external link. If no external link, show an in-app 'Register' button that calls registerForEvent on the backend and shows a success confirmation. Show attendee count.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-post-event-form-accessible-from-the-events-page-that-allows-any-student-to-list-a-new-event-with-fields-title-description-category-college-city-venue-event-date-and-optional-registration-link",
+      "title": "Add a 'Post Event' form accessible from the Events page that allows any student to list a new event with fields: title, description, category, college, city, venue, event date, and optional registration link.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-browser-based-geolocation-detection-on-the-frontend-when-a-user-logs-in-for-the-first-time-or-opens-the-profile-setup-modal-request-location-permission-via-the-browser-geolocation-api-and-store-the-detected-city-region-when-a-user-opens-the-post-listing-post-event-or-create-community-forms-auto-populate-the-city-field-with-the-detected-location-show-a-detect-my-location-button-in-each-of-these-forms-to-allow-re-detection-gracefully-handle-permission-denial-by-leaving-the-field-editable",
+      "title": "Implement browser-based geolocation detection on the frontend. When a user logs in for the first time or opens the profile setup modal, request location permission via the browser Geolocation API and store the detected city/region. When a user opens the Post Listing, Post Event, or Create Community forms, auto-populate the 'city' field with the detected location. Show a 'Detect my location' button in each of these forms to allow re-detection. Gracefully handle permission denial by leaving the field editable.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-expand-the-profilesetupmodal-or-replace-it-with-a-multi-step-onboarding-flow-to-collect-name-college-city-course-year-of-study-dropdown-1st-5th-year-postgrad-interest-areas-multi-select-tags-e-g-coding-entrepreneurship-marketing-design-sports-music-science-arts-linkedin-profile-url-optional-and-one-other-social-portfolio-link-optional-the-modal-must-be-shown-to-authenticated-users-who-have-not-yet-completed-their-profile-and-must-not-be-dismissible-until-the-required-fields-name-college-city-course-year-of-study-are-filled-submit-all-fields-to-the-extended-backend-savecalleruserprofile-function",
+      "title": "Expand the ProfileSetupModal (or replace it with a multi-step onboarding flow) to collect: Name, college, city, course, year of study (dropdown: 1st–5th Year / Postgrad), interest areas (multi-select tags: e.g. Coding, Entrepreneurship, Marketing, Design, Sports, Music, Science, Arts), LinkedIn profile URL (optional), and one other social/portfolio link (optional). The modal must be shown to authenticated users who have not yet completed their profile, and must not be dismissible until the required fields (Name, college, city, course, year of study) are filled. Submit all fields to the extended backend saveCallerUserProfile function.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rename-the-app-to-unishare-everywhere-it-appears-update-the-html-title-tag-in-index-html-the-navbar-logo-text-the-footer-and-any-page-level-titles-or-metadata-ensure-the-name-uniconnect-or-any-placeholder-name-is-fully-replaced-with-unishare-across-all-frontend-files",
+      "title": "Rename the app to 'UniShare' everywhere it appears: update the HTML <title> tag in index.html, the navbar logo text, the footer, and any page-level titles or metadata. Ensure the name 'UniConnect' or any placeholder name is fully replaced with 'UniShare' across all frontend files.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-user-profile-page-at-route-profile-for-the-logged-in-user-s-own-profile-the-page-must-display-1-an-about-section-showing-name-college-course-year-of-study-interest-area-tags-and-linkedin-social-links-2-a-grid-of-the-user-s-own-marketplace-listings-using-existing-listingcard-components-3-a-grid-of-communities-the-user-has-joined-using-existing-communitycard-components-for-the-logged-in-user-show-an-edit-profile-button-that-opens-the-existing-profilesetupmodal-in-edit-mode-add-a-profile-link-inside-the-authenticated-user-dropdown-in-the-navbar",
+      "title": "Build a User Profile page at route '/profile' for the logged-in user's own profile. The page must display: (1) an About section showing name, college, course, year of study, interest area tags, and LinkedIn/social links; (2) a grid of the user's own marketplace listings using existing ListingCard components; (3) a grid of communities the user has joined using existing CommunityCard components. For the logged-in user, show an 'Edit Profile' button that opens the existing ProfileSetupModal in edit mode. Add a 'Profile' link inside the authenticated user dropdown in the Navbar.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-profile-route-to-the-tanstack-router-configuration-in-app-tsx-and-register-the-new-profilepage-component-so-the-route-resolves-correctly",
+      "title": "Add a '/profile' route to the TanStack Router configuration in App.tsx and register the new ProfilePage component so the route resolves correctly.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-backend-exposes-a-query-to-fetch-all-listings-filtered-by-seller-principal-caller-and-a-query-to-fetch-all-communities-where-the-caller-is-a-member-so-the-profile-page-can-retrieve-per-user-data-if-these-already-exist-via-getlistings-and-getmycommunities-verify-they-are-wired-into-the-usequeries-hooks-so-the-profile-page-can-call-them-without-new-backend-changes",
+      "title": "Ensure the backend exposes a query to fetch all listings filtered by seller principal (caller) and a query to fetch all communities where the caller is a member, so the Profile page can retrieve per-user data. If these already exist via getListings and getMyCommunities, verify they are wired into the useQueries hooks so the Profile page can call them without new backend changes.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-duplicate-logo-that-appears-above-the-navbar-on-pc-desktop-browser-only-one-unishare-logo-should-be-visible-the-one-inside-the-navbar-component-audit-layout-tsx-navbar-tsx-and-homepage-tsx-for-any-extra-logo-image-rendering-and-delete-the-redundant-one",
+      "title": "Remove the duplicate logo that appears above the navbar on PC/desktop browser. Only one UniShare logo should be visible — the one inside the Navbar component. Audit Layout.tsx, Navbar.tsx, and HomePage.tsx for any extra logo/image rendering and delete the redundant one.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-polish-the-user-profile-page-at-profile-add-a-circular-profile-picture-display-at-the-top-of-the-profile-card-with-a-camera-upload-icon-overlay-clicking-the-overlay-opens-a-file-picker-to-select-and-upload-a-profile-image-stored-as-a-blob-in-the-backend-via-the-existing-savecalleruserprofile-function-or-a-new-uploadprofileimage-function-display-a-placeholder-avatar-initials-based-when-no-image-is-set-ensure-the-profile-section-layout-is-refined-with-a-well-structured-header-card-showing-the-avatar-name-college-course-year-interest-tags-and-social-links-in-a-clean-polished-design",
+      "title": "Polish the User Profile page at '/profile': add a circular profile picture display at the top of the profile card with a camera/upload icon overlay. Clicking the overlay opens a file picker to select and upload a profile image (stored as a Blob in the backend via the existing saveCallerUserProfile function or a new uploadProfileImage function). Display a placeholder avatar (initials-based) when no image is set. Ensure the profile section layout is refined with a well-structured header card showing the avatar, name, college, course, year, interest tags, and social links in a clean, polished design.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-image-upload-support-to-the-post-listing-marketplace-form-postlistingmodal-include-an-image-upload-field-that-allows-users-to-pick-an-image-file-when-creating-a-book-stationery-notes-listing-the-image-should-be-stored-as-a-blob-in-the-backend-via-createlisting-or-a-dedicated-upload-call-and-displayed-on-the-listingcard-and-listingdetailpage",
+      "title": "Add image upload support to the 'Post Listing' marketplace form (PostListingModal). Include an image upload field that allows users to pick an image file when creating a book/stationery/notes listing. The image should be stored as a Blob in the backend (via createListing or a dedicated upload call) and displayed on the ListingCard and ListingDetailPage.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-image-upload-support-to-the-create-community-form-createcommunitymodal-include-an-optional-community-cover-banner-image-upload-field-the-image-should-be-stored-as-a-blob-in-the-backend-and-displayed-on-the-communitycard-and-communitydetailpage-as-a-banner-or-thumbnail",
+      "title": "Add image upload support to the 'Create Community' form (CreateCommunityModal). Include an optional community cover/banner image upload field. The image should be stored as a Blob in the backend and displayed on the CommunityCard and CommunityDetailPage as a banner or thumbnail.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-in-layout-tsx-replace-the-developer-placeholder-text-with-the-name-durganand-sah-set-the-linkedin-icon-s-href-to-https-www-linkedin-com-in-durganand-sah-491b50253-opening-in-a-new-tab-set-the-instagram-icon-s-href-to-https-www-instagram-com-dn-atwork-hl-en-opening-in-a-new-tab",
+      "title": "Update the footer in Layout.tsx: replace the developer placeholder text with the name 'Durganand Sah'. Set the LinkedIn icon's href to 'https://www.linkedin.com/in/durganand-sah-491b50253' (opening in a new tab). Set the Instagram icon's href to 'https://www.instagram.com/dn.atwork/?hl=en' (opening in a new tab).",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-dedicated-about-page-aboutpage-accessible-from-the-footer-and-or-navbar-the-page-must-include-1-what-unishare-is-a-student-community-platform-for-college-students-in-india-2-our-goal-connecting-students-across-campuses-for-peer-to-peer-exchange-and-collaboration-3-all-features-overview-marketplace-buy-sell-rent-books-notes-stationery-communities-interest-based-groups-events-campus-platform-events-profile-onboarding-location-detection-4-a-user-tour-how-to-use-guide-section-walking-users-through-each-feature-step-by-step-with-icons-and-short-descriptions-5-faq-or-tips-for-new-users-style-the-page-consistently-with-the-amber-teal-academic-theme-register-the-about-route-in-app-tsx-and-add-an-about-link-in-the-footer",
+      "title": "Create a dedicated '/about' page (AboutPage) accessible from the footer and/or navbar. The page must include: (1) What UniShare is — a student community platform for college students in India, (2) Our Goal — connecting students across campuses for peer-to-peer exchange and collaboration, (3) All Features overview — Marketplace (buy/sell/rent books, notes, stationery), Communities (interest-based groups), Events (campus & platform events), Profile & Onboarding, Location detection, (4) A User Tour / How-To-Use Guide section walking users through each feature step by step with icons and short descriptions, (5) FAQ or tips for new users. Style the page consistently with the amber/teal academic theme. Register the '/about' route in App.tsx and add an 'About' link in the footer.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restore-the-navbar-logo-to-match-the-reference-image-display-a-small-square-rounded-icon-group-of-people-campus-illustration-alongside-the-bold-unishare-wordmark-in-dark-text-the-logo-lockup-should-appear-as-a-compact-icon-text-pair-in-the-top-left-of-the-navbar-exactly-as-shown-in-the-uploaded-reference-screenshot",
+      "title": "Restore the Navbar logo to match the reference image: display a small square rounded icon (group-of-people/campus illustration) alongside the bold 'UniShare' wordmark in dark text. The logo lockup should appear as a compact icon + text pair in the top-left of the Navbar, exactly as shown in the uploaded reference screenshot.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-revert-the-hero-section-typography-and-color-scheme-on-the-homepage-to-match-the-reference-image-the-hero-heading-your-campus-connected-must-use-large-bold-white-text-rendered-over-a-warm-illustrated-campus-background-image-the-subtitle-text-must-be-white-light-colored-the-cta-buttons-must-use-amber-filled-e-g-browse-marketplace-and-a-white-outlined-style-join-communities-as-shown-in-the-reference",
+      "title": "Revert the hero section typography and color scheme on the HomePage to match the reference image: the hero heading ('Your Campus, Connected') must use large, bold white text rendered over a warm illustrated campus background image. The subtitle text must be white/light colored. The CTA buttons must use amber (filled, e.g. 'Browse Marketplace') and a white/outlined style ('Join Communities') as shown in the reference.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-location-city-filter-fully-functional-on-the-marketplace-page-communities-page-and-events-page-when-a-user-selects-or-types-a-city-in-the-location-filter-input-the-displayed-listings-communities-events-must-be-filtered-client-side-or-via-backend-query-to-only-show-items-matching-that-city-value-the-filter-must-clear-reset-when-the-city-input-is-emptied",
+      "title": "Make the location/city filter fully functional on the Marketplace page, Communities page, and Events page. When a user selects or types a city in the location filter input, the displayed listings/communities/events must be filtered client-side (or via backend query) to only show items matching that city value. The filter must clear/reset when the city input is emptied.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-footer-in-layout-tsx-so-it-is-visible-on-mobile-devices-the-footer-must-render-below-the-main-content-area-including-below-the-about-section-content-when-on-the-about-route-on-all-screen-sizes-remove-any-css-or-tailwind-classes-that-hide-the-footer-on-mobile-e-g-hidden-or-md-flex-without-a-mobile-fallback-ensure-the-footer-appears-at-the-bottom-of-the-page-on-both-desktop-and-mobile-viewports",
+      "title": "Fix the footer in Layout.tsx so it is visible on mobile devices. The footer must render below the main content area (including below the About section content when on the /about route) on all screen sizes. Remove any CSS or Tailwind classes that hide the footer on mobile (e.g. 'hidden' or 'md:flex' without a mobile fallback). Ensure the footer appears at the bottom of the page on both desktop and mobile viewports.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-logo-displayed-in-the-about-page-aboutpage-tsx-to-match-the-current-unishare-logo-used-in-the-navbar-a-small-square-rounded-icon-group-of-people-campus-illustration-alongside-the-bold-unishare-wordmark-replace-any-outdated-or-placeholder-logo-rendering-in-aboutpage-tsx-with-the-same-logo-lockup-icon-wordmark-that-is-used-in-navbar-tsx-using-the-same-asset-file-e-g-assets-generated-unishare-logo-png-or-equivalent-and-consistent-styling",
+      "title": "Update the logo displayed in the About page (AboutPage.tsx) to match the current UniShare logo used in the Navbar — a small square rounded icon (group-of-people/campus illustration) alongside the bold 'UniShare' wordmark. Replace any outdated or placeholder logo rendering in AboutPage.tsx with the same logo lockup (icon + wordmark) that is used in Navbar.tsx, using the same asset file (e.g. /assets/generated/unishare-logo.png or equivalent) and consistent styling.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Marketplace for students to buy, sell, or rent essentials (books, notes, stationery) with campus/city area filter",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Community feature where students can create or join interest-based groups (coding, entrepreneurship, marketing, etc.) with college-based and city-based filters",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Events feature where users can list and view events, register/participate via event detail page, with a dedicated section for company-organized events",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement a backend data model for Marketplace listings. Each listing must store: id, title, description, category (books, notes, stationery, other), type (sell, buy, rent), price, seller principal/name, college name, city, area scope (campus | city), image URL (optional), createdAt timestamp, and status (active | sold | rented).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement backend functions for the Marketplace: createListing, getListings (with optional filters: category, type, area scope [campus|city], city, college), getListingById, and updateListingStatus.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Implement a backend data model for Communities. Each community must store: id, name, description, topic/category (coding, entrepreneurship, marketing, design, science, other), college name, city, creatorPrincipal, members (list of principals), pendingRequests (list of principals), isPublic (join freely or request-based), createdAt.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Implement backend functions for Communities: createCommunity, getCommunities (with filters: topic/category, college, city), getCommunityById, requestToJoin (adds caller to pendingRequests), approveMember (creator approves a pending request, moves principal from pendingRequests to members), addMember (for direct add by creator), and getMyCommunities (returns communities where caller is a member).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Implement a backend data model for Events. Each event must store: id, title, description, category (tech, business, cultural, sports, workshop, other), organizer (principal or name), organizerType (user | platform), college, city, venue, eventDate, registrationLink (external URL, optional), imageUrl (optional), attendees (list of principals for platform-registered events), createdAt.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Implement backend functions for Events: createEvent, getEvents (with filters: category, college, city, organizerType), getEventById, registerForEvent (adds caller to attendees list), and getPlatformEvents (returns only events where organizerType = 'platform').",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Rename app to 'UniShare' and update app icon/logo branding accordingly",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Implement location detection: capture/request user location at login and when posting listings, events, or community content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Extended user onboarding after login: collect Name, college, course, year of study, interest areas, and LinkedIn/social profile links",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Build a User Profile page showing: about section, user details (college, course, year, interests, LinkedIn), their postings, groups joined, and groups interested in joining",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Add a peer-to-peer Chat feature allowing students to connect privately for help, networking, or discussions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Rename the app to 'UniShare' everywhere it appears (page titles, navbar logo text, HTML title tag, footer, metadata). Replace the current app icon/logo with the uploaded UniShare logo (a group-of-people icon above a curved line/arc, with 'Uni.Share' text beneath it) across the navbar, browser favicon, and any branding placements. The color scheme of the logo is dark silhouette on white with amber/teal accent for the text.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Extend the backend UserProfile data type to include the following additional fields: course (Text), yearOfStudy (Text, e.g. '1st Year', '2nd Year', etc.), interestAreas (array of Text), linkedinUrl (Text, optional), otherSocialUrl (Text, optional). Update the saveCaller UserProfile backend function to accept and persist these new fields. Ensure backward compatibility with existing profiles that lack these fields by using optional or default values.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Build a User Profile page at route '/profile' (and '/profile/:principalId' for viewing other users). The page must display: an About section (name, college, course, year of study, interest area tags, LinkedIn/social links), the user's marketplace postings (grid of their ListingCards), communities they have joined (grid of CommunityCards), and communities they are interested in / have requested to join. For the logged-in user's own profile, show an 'Edit Profile' button that reopens the profile setup/edit form. Add a link to the profile page in the Navbar auth dropdown.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Implement a backend data model and functions for peer-to-peer Chat. Each Conversation must store: id, participants (array of 2 principals), createdAt. Each Message must store: id, conversationId, senderPrincipal, text (Text), timestamp. Backend functions required: startConversation(otherPrincipal: Principal) → returns existing or new Conversation, sendMessage(conversationId: Text, text: Text), getConversations() → returns all conversations for the caller, getMessages(conversationId: Text) → returns all messages in that conversation sorted by timestamp.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Build a Chat feature in the frontend with: (1) A '/chat' page showing a list of the user's conversations with other users (avatar, name, last message preview), (2) A conversation detail view showing the full message thread with sent/received bubble styling, a text input and send button, (3) A 'Message' button on each user's profile page ('/profile/:principalId') that starts or opens a conversation with that user, (4) A chat icon in the Navbar/BottomTabBar linking to '/chat'. Messages are sent and received by polling getMessages every few seconds using React Query. The chat UI must follow the existing amber/teal design theme.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Fix duplicate logo issue on PC browser — remove the extra/uploaded logo that appears above the main navbar logo, keeping only one logo visible.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Polish the profile section and add profile image upload functionality so users can set/change their profile picture.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Add image upload support when creating marketplace listings (e.g. book postings) and when creating communities.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Update the footer: replace the developer placeholder with the name 'Durganand Sah', set the LinkedIn icon link to 'www.linkedin.com/in/durganand-sah-491b50253', and set the Instagram icon link to 'https://www.instagram.com/dn.atwork/?hl=en'.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Add an About/Info section to the app (page or modal) describing what UniShare is, its goals, all features, a user tour/guide explaining how to use each feature, and any other information a new user needs to understand the app.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-36",
+      "summary": "Update the backend Listing data type and createListing function to accept and store an optional image blob field (imageBlob: ?Blob). Similarly update the Community data type and createCommunity function to accept and store an optional image blob field. Add a UserProfile imageBlob field and update saveCallerUserProfile to accept and persist it.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-37",
+      "summary": "Revert the logo, text styles, and color scheme back to the previous version (as shown in the reference image provided by the user).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-38",
+      "summary": "Fix the location filter to make it functional (working) across the relevant pages such as Marketplace, Communities, and Events.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-39",
+      "summary": "Fix footer visibility on mobile — footer is showing on PC but not on mobile; make it visible below the About section on mobile.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-40",
+      "summary": "Update the logo displayed in the About page/section to match the current/correct UniShare logo.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "UniConnect",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

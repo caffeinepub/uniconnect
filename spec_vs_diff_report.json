@@ -1,0 +1,23 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-24T12:36:00.539Z",
+  "summary": "Both REQ-36 and REQ-37 appear to be implemented in the diff. Layout.tsx has been updated to remove the 'hidden md:block' class and replace it with 'block' plus 'pb-16 md:pb-0' padding to keep the footer visible on mobile while clearing the BottomTabBar. AboutPage.tsx has been modified and the frontend-file-summaries.txt confirms the About page logo was updated. Both requirements are addressed.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "A GitHub social link (SiGithub icon linking to https://github.com) was added to the footer in Layout.tsx.",
+      "reason": "The build request explicitly states 'Do not alter the footer's content (developer name, LinkedIn/Instagram links) — only fix its visibility on mobile.' Adding a GitHub link is a content change not requested and explicitly prohibited.",
+      "evidence": [
+        "frontend/src/components/Layout.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.85,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "project_state.json"
+  ]
+}

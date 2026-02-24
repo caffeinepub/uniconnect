@@ -1,0 +1,45 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-footer-in-layout-tsx-so-it-is-visible-on-mobile-devices-the-footer-must-render-below-the-main-content-area-including-below-the-about-section-content-when-on-the-about-route-on-all-screen-sizes-remove-any-css-or-tailwind-classes-that-hide-the-footer-on-mobile-e-g-hidden-or-md-flex-without-a-mobile-fallback-ensure-the-footer-appears-at-the-bottom-of-the-page-on-both-desktop-and-mobile-viewports",
+      "featureTitle": "Fix the footer in Layout.tsx so it is visible on mobile devices. The footer must render below the main content area (including below the About section content when on the /about route) on all screen sizes. Remove any CSS or Tailwind classes that hide the footer on mobile (e.g. 'hidden' or 'md:flex' without a mobile fallback). Ensure the footer appears at the bottom of the page on both desktop and mobile viewports.",
+      "files": [
+        "frontend/src/components/Layout.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-36"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-logo-displayed-in-the-about-page-aboutpage-tsx-to-match-the-current-unishare-logo-used-in-the-navbar-a-small-square-rounded-icon-group-of-people-campus-illustration-alongside-the-bold-unishare-wordmark-replace-any-outdated-or-placeholder-logo-rendering-in-aboutpage-tsx-with-the-same-logo-lockup-icon-wordmark-that-is-used-in-navbar-tsx-using-the-same-asset-file-e-g-assets-generated-unishare-logo-png-or-equivalent-and-consistent-styling",
+      "featureTitle": "Update the logo displayed in the About page (AboutPage.tsx) to match the current UniShare logo used in the Navbar — a small square rounded icon (group-of-people/campus illustration) alongside the bold 'UniShare' wordmark. Replace any outdated or placeholder logo rendering in AboutPage.tsx with the same logo lockup (icon + wordmark) that is used in Navbar.tsx, using the same asset file (e.g. /assets/generated/unishare-logo.png or equivalent) and consistent styling.",
+      "files": [
+        "frontend/src/pages/AboutPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-37"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

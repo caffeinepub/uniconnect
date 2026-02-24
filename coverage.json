@@ -1,0 +1,49 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-24T12:36:00.542Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-36",
+        "summary": "Fix the footer in Layout.tsx so it is visible on mobile devices. The footer must render below the main content area (including below the About section content when on the /about route) on all screen sizes. Remove any CSS or Tailwind classes that hide the footer on mobile (e.g. 'hidden' or 'md:flex' without a mobile fallback). Ensure the footer appears at the bottom of the page on both desktop and mobile viewports.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Layout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Layout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-37",
+        "summary": "Update the logo displayed in the About page (AboutPage.tsx) to match the current UniShare logo used in the Navbar — a small square rounded icon (group-of-people/campus illustration) alongside the bold 'UniShare' wordmark. Replace any outdated or placeholder logo rendering in AboutPage.tsx with the same logo lockup (icon + wordmark) that is used in Navbar.tsx, using the same asset file (e.g. /assets/generated/unishare-logo.png or equivalent) and consistent styling.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AboutPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AboutPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

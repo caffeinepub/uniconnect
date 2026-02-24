@@ -1,0 +1,41 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix footer visibility on mobile and update logo in About page",
+  "requirements": [
+    {
+      "id": "REQ-36",
+      "summary": "Fix footer visibility on mobile devices by removing responsive classes that hide it on small screens",
+      "acceptanceCriteria": [
+        "Footer is visible on mobile screen sizes (< 768px) on all pages including /about",
+        "Footer renders below all page content on mobile without being clipped or hidden",
+        "Footer continues to display correctly on desktop/PC as before",
+        "No Tailwind responsive prefix (e.g. 'hidden', 'sm:hidden') causes the footer to disappear on small screens"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Remove any Tailwind classes that hide the footer on mobile viewports (e.g., 'hidden', 'md:flex' without mobile fallback). Ensure the footer element renders with full visibility on all screen sizes by using classes like 'flex' or 'block' without responsive prefixes that would hide it on mobile. Verify the footer appears below all main content on both desktop and mobile devices."
+        }
+      ]
+    },
+    {
+      "id": "REQ-37",
+      "summary": "Update the About page logo to match the current UniShare logo used in the Navbar",
+      "acceptanceCriteria": [
+        "The About page displays the current UniShare logo (icon + wordmark) matching the Navbar logo",
+        "The logo in the About page uses the same image asset as the Navbar logo",
+        "No outdated or mismatched logo is shown anywhere on the About page",
+        "The logo renders correctly on both mobile and desktop viewports"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Replace any existing logo rendering in AboutPage.tsx with the same logo lockup (icon + wordmark) used in Navbar.tsx. Use the generated UniShare logo asset at frontend/public/assets/generated/unishare-logo.dim_240x80.png to ensure visual consistency. Apply the same styling approach as the Navbar logo (e.g., using an img element with appropriate width/height and responsive classes) so the logo displays consistently across all viewport sizes."
+        }
+      ]
+    }
+  ]
+}
